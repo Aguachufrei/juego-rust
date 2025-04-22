@@ -1,9 +1,6 @@
 use macroquad::prelude::*;
-
-pub fn draw_square(x: f32, y: f32) {
-    draw_rectangle(x, y, 50.0, 50.0, BLUE);
-}
-
-pub fn draw_circle(x: f32, y: f32) {
-    draw_circle(x, y, 25.0, RED);
+use crate::screen;
+pub fn rectangle(x: f32, y: f32, w:f32, h:f32, col:Color, cam:&screen::Camera){
+    let (sx, sy) = screen::world_to_screen(x, y, &cam);
+    draw_rectangle(sx, sy, w*cam.zoom, h*cam.zoom, col);
 }
