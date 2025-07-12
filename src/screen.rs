@@ -22,7 +22,7 @@ pub fn update_camera(c: &mut Camera){
     c.zoom *= 1.0 + (SCROLL_SENSITIVITY * mouse_wheel().1)
 }
 
-pub fn world_to_screen(x: f32, y: f32, c: &Camera) -> (f32, f32) {
+pub fn world_to_screen(x: f32, y: f32, c: Camera) -> (f32, f32) {
 
     let screen_x = (x - c.x) * c.zoom + screen_width() / 2.0;
     let screen_y = (y - c.y) * c.zoom + screen_height() / 2.0;

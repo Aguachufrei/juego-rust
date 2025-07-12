@@ -24,17 +24,19 @@ async fn main() {
         left: NONE,
         right: NONE,
     };
-
+    let mut ccamera: &mut screen::Camera = &mut camera1;
     loop {
         clear_background(YELLOW);
         let dt = get_frame_time();
         
         keys::check_keys(& mut dir);
         update_movement(&mut x, &mut y, dt, &dir);
-        screen::update_camera(&mut camera1);
-        draw::rectangle(x, y, 40.0, 40.0, BLACK, &camera1);
-        draw::rectangle(-5.0, -5.0, 10.0, 10.0, BLUE, &camera1);
-
+        screen::update_camera(&mut ccamera);
+        draw::rectangle(x, y, 40.0, 40.0, BLACK, ccamera);
+        draw::rectangle(-5.0, -5.0, 10.0, 10.0, BLUE, ccamera);
+        draw::fixed_rectangle(20.0, 20.0, 20.0, 20.0, RED);
+        draw::fixed_scaled_rectangle(19.0, 20.0, 20.0, 20.0, true, true, PURPLE);
+        draw::create_grid(0.0, 0.0, 1000, 1000, 20.0, 20.0, 2.0, ORANGE, ccamera); 
         next_frame().await;
     }
 }
